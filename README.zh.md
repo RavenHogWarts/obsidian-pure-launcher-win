@@ -1,4 +1,4 @@
-> 中文 | [Ehglish](README.md)
+> 中文 | [English](README.md)
 
 # Obsidian Pure Launcher
 
