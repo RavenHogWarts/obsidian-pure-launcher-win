@@ -7,10 +7,10 @@ REM 设置项目根目录变量，指向src的上级目录（即项目根目录�
 set ROOTDIR=%~dp0..\
 
 REM 检查 pyinstaller 是否已安装，若未安装则自动安装并重启脚本
-where pyinstaller >nul 2>nul
+py -m PyInstaller --version >nul 2>nul
 if %errorlevel% neq 0 (
     echo 未检测到 pyinstaller，正在安装...
-    pip install pyinstaller
+    py -m pip install pyinstaller
     echo pyinstaller 安装完成，正在重启打包脚本...
     "%~f0"
     exit /b
@@ -31,7 +31,7 @@ REM --icon：指定exe图标
 REM --distpath：输出目录
 REM --workpath：临时工作目录
 REM --specpath：spec文件目录
-call pyinstaller --onefile --windowed --name obsidian-pure-launcher --icon %ROOTDIR%assets\app-icon.ico --distpath %ROOTDIR%dist --workpath %ROOTDIR%build --specpath %ROOTDIR%build main.py
+py -m PyInstaller --onefile --windowed --name obsidian-pure-launcher --icon %ROOTDIR%assets\app-icon.ico --distpath %ROOTDIR%dist --workpath %ROOTDIR%build --specpath %ROOTDIR%build main.py
 
 REM 清理build中间文件夹，dist目录和exe保留
 if exist %ROOTDIR%build rmdir /s /q %ROOTDIR%build
